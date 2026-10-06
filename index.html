@@ -15,7 +15,7 @@
 
   <style>
 
-  * {
+ * {
   box-sizing: border-box;
 }
 
@@ -38,7 +38,7 @@ body {
    ============================ */
 
 #reviews-section > h2 {
-  margin: 0 0 35px;
+  margin: 0 0 32px;
   font-size: 38px;
   line-height: 1.2;
   font-weight: 700;
@@ -50,7 +50,7 @@ body {
    ============================ */
 
 #rating-summary {
-  margin-bottom: 50px;
+  margin-bottom: 42px;
 }
 
 #average-rating {
@@ -64,7 +64,7 @@ body {
 #average-stars {
   font-size: 30px;
   line-height: 1.2;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
 .rating-stars {
@@ -73,10 +73,7 @@ body {
 }
 
 .rating-number {
-  color: #000;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0;
+  display: none;
 }
 
 #review-count {
@@ -93,16 +90,16 @@ body {
 #reviews-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 22px;
   text-align: left;
 }
 
 .review-card {
-  padding: 30px;
-  border: 1px solid rgba(132, 54, 253, 0.12);
+  padding: 26px 28px;
+  border: 1px solid rgba(132, 54, 253, 0.14);
   border-radius: 20px;
   background: #fff;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 7px 24px rgba(0, 0, 0, 0.055);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -110,21 +107,21 @@ body {
 
 .review-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(132, 54, 253, 0.14);
+  box-shadow: 0 11px 28px rgba(132, 54, 253, 0.12);
 }
 
 .review-stars {
   color: #8436FD;
   font-size: 21px;
   letter-spacing: 2px;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 
 .review-text {
   font-size: 17px;
-  line-height: 1.65;
+  line-height: 1.6;
   color: #000;
-  margin: 0 0 22px;
+  margin: 0 0 18px;
 }
 
 .review-name {
@@ -137,7 +134,7 @@ body {
   color: #000;
   font-size: 13px;
   opacity: 0.5;
-  margin-top: 6px;
+  margin-top: 5px;
   margin-bottom: 0;
 }
 
@@ -147,18 +144,18 @@ body {
 
 #review-form-section {
   max-width: 650px;
-  margin: 75px auto 20px;
-  padding: 40px 35px;
+  margin: 65px auto 15px;
+  padding: 38px 35px;
   text-align: left;
   border-radius: 24px;
   background: #fff;
-  border: 1px solid rgba(132, 54, 253, 0.15);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(132, 54, 253, 0.16);
+  box-shadow: 0 9px 30px rgba(0, 0, 0, 0.06);
 }
 
 #review-form-section h2 {
   text-align: center;
-  margin: 0 0 30px;
+  margin: 0 0 28px;
   font-size: 30px;
   color: #000;
 }
@@ -168,12 +165,12 @@ body {
    ============================ */
 
 .form-field {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .form-field label {
   display: block;
-  margin-bottom: 9px;
+  margin-bottom: 8px;
   font-weight: 700;
   color: #000;
 }
@@ -186,9 +183,9 @@ body {
 .form-field input,
 .form-field textarea {
   width: 100%;
-  padding: 14px 16px;
+  padding: 13px 15px;
   border: 1px solid #d8d8d8;
-  border-radius: 12px;
+  border-radius: 11px;
   font-family: inherit;
   font-size: 16px;
   color: #000;
@@ -202,11 +199,11 @@ body {
 .form-field input:focus,
 .form-field textarea:focus {
   border-color: #8436FD;
-  box-shadow: 0 0 0 3px rgba(132, 54, 253, 0.12);
+  box-shadow: 0 0 0 3px rgba(132, 54, 253, 0.11);
 }
 
 .form-field textarea {
-  min-height: 140px;
+  min-height: 135px;
   resize: vertical;
 }
 
@@ -247,7 +244,7 @@ body {
   width: 100%;
   padding: 15px 20px;
   border: 2px solid #000;
-  border-radius: 12px;
+  border-radius: 11px;
   background: #000;
   color: #fff;
   font-size: 16px;
@@ -255,7 +252,6 @@ body {
   cursor: pointer;
   transition:
     background 0.2s ease,
-    color 0.2s ease,
     border-color 0.2s ease,
     transform 0.2s ease;
 }
@@ -263,7 +259,6 @@ body {
 #submit-review:hover {
   background: #8436FD;
   border-color: #8436FD;
-  color: #fff;
   transform: translateY(-1px);
 }
 
@@ -296,7 +291,7 @@ body {
 
   #reviews-section > h2 {
     font-size: 30px;
-    margin-bottom: 28px;
+    margin-bottom: 27px;
   }
 
   #average-rating {
@@ -313,7 +308,7 @@ body {
   }
 
   .review-card {
-    padding: 25px;
+    padding: 24px;
     border-radius: 18px;
   }
 
@@ -322,7 +317,7 @@ body {
   }
 
   #review-form-section {
-    margin-top: 55px;
+    margin-top: 52px;
     padding: 30px 20px;
     border-radius: 20px;
   }
