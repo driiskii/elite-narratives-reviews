@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Elite Narratives Reviews</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      background: transparent;
+      color: #222;
+    }
+
+
+    #reviews-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+
+    h2 {
+      margin-bottom: 30px;
+      font-size: 36px;
+    }
+
+
+    /* ============================
+       RATING SUMMARY
+       ============================ */
+
+    #rating-summary {
+      margin-bottom: 45px;
+    }
+
+
+    #average-rating {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+
+    #average-stars {
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+
+    .rating-stars {
+      color: #F5B301;
+      letter-spacing: 3px;
+    }
+
+
+    .rating-number {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+
+    #review-count {
+      margin-top: 8px;
+      font-size: 15px;
+      opacity: 0.65;
+    }
+
+
+    /* ============================
+       REVIEWS
+       ============================ */
+
+    #reviews-list {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 24px;
+
+      text-align: left;
+    }
+
+
+    .review-card {
+      padding: 30px;
+
+      border-radius: 18px;
+
+      background: #ffffff;
+
+      box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.08);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+
+    .review-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+
+    .review-stars {
+      color: #F5B301;
+
+      font-size: 21px;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 14px;
+    }
+
+
+    .review-text {
+      font-size: 17px;
+
+      line-height: 1.65;
+
+      margin:
+        0 0 20px;
+    }
+
+
+    .review-name {
+      font-weight: 600;
+
+      margin: 0;
+    }
+
+
+    .review-date {
+      font-size: 13px;
+
+      opacity: 0.55;
+
+      margin-top: 6px;
+
+      margin-bottom: 0;
+    }
+
+
+    /* ============================
+       MOBILE
+       ============================ */
+
+    @media (max-width: 700px) {
+
+      body {
+        padding: 25px 15px;
+      }
+
+
+      h2 {
+        font-size: 28px;
+      }
+
+
+      #average-rating {
+        font-size: 42px;
+      }
+
+
+      #average-stars {
+        font-size: 26px;
+      }
+
+
+      #reviews-list {
+        grid-template-columns: 1fr;
+      }
+
+
+      .review-card {
+        padding: 24px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div id="reviews-section">
+
+
+    <h2>
+      What People Are Saying
+    </h2>
+
+
+    <div id="rating-summary">
+
+
+      <div id="average-rating">
+        0.0
+      </div>
+
+
+      <div id="average-stars">
+        ☆☆☆☆☆
+      </div>
+
+
+      <div id="review-count">
+        Based on 0 reviews
+      </div>
+
+
+    </div>
+
+
+    <div id="reviews-list">
+      Loading reviews...
+    </div>
+
+
+  </div>
+
+
+  <script>
+
+    const REVIEWS_URL =
+      "https://script.google.com/macros/s/AKfycbw9nRXba6kYjTGUaZLxgScZ0ADz5iFiWa8YkKV0oB3xdM6sv8oZ1INmYWcmbRe2kxLk/exec";
+
+
+    function displayReviews(data) {
+
+
+      const reviewsList =
+        document.getElementById(
+          "reviews-list"
+        );
+
+
+      const averageRating =
+        document.getElementById(
+          "average-rating"
+        );
+
+
+      const averageStars =
+        document.getElementById(
+          "average-stars"
+        );
+
+
+      const reviewCount =
+        document.getElementById(
+          "review-count"
+        );
+
+
+      if (!data.success) {
+
+        reviewsList.textContent =
+          "Unable to load reviews.";
+
+        return;
+
+      }
+
+
+      const reviews =
+        data.reviews || [];
+
+
+      if (reviews.length === 0) {
+
+        averageRating.textContent =
+          "0.0";
+
+        averageStars.textContent =
+          "☆☆☆☆☆";
+
+        reviewCount.textContent =
+          "Based on 0 reviews";
+
+        reviewsList.textContent =
+          "No reviews yet.";
+
+        return;
+
+      }
+
+
+      /* ============================
+         CALCULATE AVERAGE
+         ============================ */
+
+      const totalRating =
+        reviews.reduce(
+          (total, review) =>
+            total +
+            Number(review.rating),
+
+          0
+        );
+
+
+      const average =
+        totalRating /
+        reviews.length;
+
+
+      /* ============================
+         SUMMARY
+         ============================ */
+
+      averageRating.textContent =
+        average.toFixed(1);
+
+
+      averageStars.innerHTML =
+        '<span class="rating-stars">★★★★★</span> ' +
+        '<span class="rating-number">' +
+        average.toFixed(1) +
+        '</span>';
+
+
+      reviewCount.textContent =
+        `Based on ${reviews.length} ${
+          reviews.length === 1
+            ? "review"
+            : "reviews"
+        }`;
+
+
+      /* ============================
+         REVIEW CARDS
+         ============================ */
+
+      reviewsList.innerHTML = "";
+
+
+      reviews.forEach(review => {
+
+
+        const reviewCard =
+          document.createElement(
+            "div"
+          );
+
+
+        reviewCard.className =
+          "review-card";
+
+
+        let formattedDate = "";
+
+
+        if (review.timestamp) {
+
+
+          const reviewDate =
+            new Date(
+              review.timestamp
+            );
+
+
+          if (
+            !isNaN(
+              reviewDate.getTime()
+            )
+          ) {
+
+
+            formattedDate =
+              reviewDate.toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                }
+              );
+
+          }
+
+        }
+
+
+        reviewCard.innerHTML = `
+
+          <div class="review-stars">
+
+            ${"★".repeat(
+              Number(review.rating)
+            )}
+
+            ${"☆".repeat(
+              5 -
+              Number(review.rating)
+            )}
+
+          </div>
+
+
+          <p class="review-text">
+
+            "${review.review}"
+
+          </p>
+
+
+          <p class="review-name">
+
+            — ${review.name}
+
+          </p>
+
+
+          <p class="review-date">
+
+            ${formattedDate}
+
+          </p>
+
+        `;
+
+
+        reviewsList.appendChild(
+          reviewCard
+        );
+
+
+      });
+
+    }
+
+
+    /* ============================
+       JSONP LOADER
+       ============================ */
+
+    function loadReviews() {
+
+
+      const callbackName =
+        "reviewsCallback_" +
+        Date.now();
+
+
+      window[callbackName] =
+        function(data) {
+
+          displayReviews(data);
+
+          delete window[
+            callbackName
+          ];
+
+        };
+
+
+      const script =
+        document.createElement(
+          "script"
+        );
+
+
+      script.src =
+        REVIEWS_URL +
+        "?callback=" +
+        callbackName;
+
+
+      script.onerror =
+        function() {
+
+          document.getElementById(
+            "reviews-list"
+          ).textContent =
+            "Unable to load reviews.";
+
+          delete window[
+            callbackName
+          ];
+
+        };
+
+
+      document.body.appendChild(
+        script
+      );
+
+    }
+
+
+    loadReviews();
+
+  </script>
+
+
+</body>
+
+</html>
