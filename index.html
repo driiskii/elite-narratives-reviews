@@ -311,114 +311,29 @@
 
 <body>
 
+  <!-- ============================
+       REVIEWS
+       ============================ -->
 
   <div id="reviews-section">
-
 
     <h2>
       What People Are Saying
     </h2>
 
-
     <div id="rating-summary">
-
 
       <div id="average-rating">
         0.0
       </div>
 
-      <div id="review-form-section">
-
-  <h2>Leave a Review</h2>
-
-  <div id="review-form">
-
-    <div class="form-field">
-      <label for="review-name">
-        Your Name
-      </label>
-
-      <input
-        type="text"
-        id="review-name"
-        placeholder="Your name"
-      >
-    </div>
-
-
-    <div class="form-field">
-
-      <label>
-        Your Rating
-      </label>
-
-      <div id="star-rating">
-
-        <span data-rating="1">★</span>
-        <span data-rating="2">★</span>
-        <span data-rating="3">★</span>
-        <span data-rating="4">★</span>
-        <span data-rating="5">★</span>
-
-      </div>
-
-    </div>
-
-
-    <div class="form-field">
-
-      <label for="review-text">
-        Your Review
-      </label>
-
-      <textarea
-        id="review-text"
-        placeholder="Tell us about your experience..."
-      ></textarea>
-
-    </div>
-
-
-    <div class="form-field">
-
-      <label for="review-email">
-        Email
-        <span>(optional)</span>
-      </label>
-
-      <input
-        type="email"
-        id="review-email"
-        placeholder="you@example.com"
-      >
-
-    </div>
-
-
-    <button
-      id="submit-review"
-      type="button"
-    >
-      Submit Review
-    </button>
-
-
-    <div id="review-message"></div>
-
-  </div>
-
-</div>
-
-
       <div id="average-stars">
         ☆☆☆☆☆
       </div>
 
-
       <div id="review-count">
         Based on 0 reviews
       </div>
-
 
     </div>
 
@@ -427,9 +342,101 @@
       Loading reviews...
     </div>
 
+  </div>
+
+
+  <!-- ============================
+       REVIEW FORM
+       ============================ -->
+
+  <div id="review-form-section">
+
+    <h2>Leave a Review</h2>
+
+    <div id="review-form">
+
+      <div class="form-field">
+
+        <label for="review-name">
+          Your Name
+        </label>
+
+        <input
+          type="text"
+          id="review-name"
+          placeholder="Your name"
+        >
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label>
+          Your Rating
+        </label>
+
+        <div id="star-rating">
+
+          <span data-rating="1">★</span>
+          <span data-rating="2">★</span>
+          <span data-rating="3">★</span>
+          <span data-rating="4">★</span>
+          <span data-rating="5">★</span>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="review-text">
+          Your Review
+        </label>
+
+        <textarea
+          id="review-text"
+          placeholder="Tell us about your experience..."
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="review-email">
+          Email
+          <span>(optional)</span>
+        </label>
+
+        <input
+          type="email"
+          id="review-email"
+          placeholder="you@example.com"
+        >
+
+      </div>
+
+
+      <button
+        id="submit-review"
+        type="button"
+      >
+        Submit Review
+      </button>
+
+
+      <div id="review-message"></div>
+
+    </div>
 
   </div>
 
+
+  <!-- ============================
+       JAVASCRIPT
+       ============================ -->
 
   <script>
 
@@ -437,31 +444,23 @@
       "https://script.google.com/macros/s/AKfycbw9nRXba6kYjTGUaZLxgScZ0ADz5iFiWa8YkKV0oB3xdM6sv8oZ1INmYWcmbRe2kxLk/exec";
 
 
+    /* ============================
+       DISPLAY REVIEWS
+       ============================ */
+
     function displayReviews(data) {
 
-
       const reviewsList =
-        document.getElementById(
-          "reviews-list"
-        );
-
+        document.getElementById("reviews-list");
 
       const averageRating =
-        document.getElementById(
-          "average-rating"
-        );
-
+        document.getElementById("average-rating");
 
       const averageStars =
-        document.getElementById(
-          "average-stars"
-        );
-
+        document.getElementById("average-stars");
 
       const reviewCount =
-        document.getElementById(
-          "review-count"
-        );
+        document.getElementById("review-count");
 
 
       if (!data.success) {
@@ -480,8 +479,7 @@
 
       if (reviews.length === 0) {
 
-        averageRating.textContent =
-          "0.0";
+        averageRating.textContent = "0.0";
 
         averageStars.textContent =
           "☆☆☆☆☆";
@@ -497,28 +495,21 @@
       }
 
 
-      /* ============================
-         CALCULATE AVERAGE
-         ============================ */
+      /* Calculate average */
 
       const totalRating =
         reviews.reduce(
           (total, review) =>
-            total +
-            Number(review.rating),
-
+            total + Number(review.rating),
           0
         );
 
 
       const average =
-        totalRating /
-        reviews.length;
+        totalRating / reviews.length;
 
 
-      /* ============================
-         SUMMARY
-         ============================ */
+      /* Display summary */
 
       averageRating.textContent =
         average.toFixed(1);
@@ -539,20 +530,15 @@
         }`;
 
 
-      /* ============================
-         REVIEW CARDS
-         ============================ */
+      /* Display review cards */
 
       reviewsList.innerHTML = "";
 
 
       reviews.forEach(review => {
 
-
         const reviewCard =
-          document.createElement(
-            "div"
-          );
+          document.createElement("div");
 
 
         reviewCard.className =
@@ -564,19 +550,13 @@
 
         if (review.timestamp) {
 
-
           const reviewDate =
-            new Date(
-              review.timestamp
-            );
+            new Date(review.timestamp);
 
 
           if (
-            !isNaN(
-              reviewDate.getTime()
-            )
+            !isNaN(reviewDate.getTime())
           ) {
-
 
             formattedDate =
               reviewDate.toLocaleDateString(
@@ -602,31 +582,24 @@
             )}
 
             ${"☆".repeat(
-              5 -
-              Number(review.rating)
+              5 - Number(review.rating)
             )}
 
           </div>
 
 
           <p class="review-text">
-
             "${review.review}"
-
           </p>
 
 
           <p class="review-name">
-
             — ${review.name}
-
           </p>
 
 
           <p class="review-date">
-
             ${formattedDate}
-
           </p>
 
         `;
@@ -636,22 +609,19 @@
           reviewCard
         );
 
-
       });
 
     }
 
 
     /* ============================
-       JSONP LOADER
+       LOAD REVIEWS
        ============================ */
 
     function loadReviews() {
 
-
       const callbackName =
-        "reviewsCallback_" +
-        Date.now();
+        "reviewsCallback_" + Date.now();
 
 
       window[callbackName] =
@@ -659,17 +629,13 @@
 
           displayReviews(data);
 
-          delete window[
-            callbackName
-          ];
+          delete window[callbackName];
 
         };
 
 
       const script =
-        document.createElement(
-          "script"
-        );
+        document.createElement("script");
 
 
       script.src =
@@ -686,299 +652,272 @@
           ).textContent =
             "Unable to load reviews.";
 
-          delete window[
-            callbackName
-          ];
+          delete window[callbackName];
 
         };
 
 
-      document.body.appendChild(
-        script
-      );
-
-    }
-
-
-    loadReviews();
-/* ============================
-   REVIEW FORM
-   ============================ */
-
-const stars =
-  document.querySelectorAll(
-    "#star-rating span"
-  );
-
-let selectedRating = 0;
-
-
-/* ============================
-   STAR RATING
-   ============================ */
-
-stars.forEach(star => {
-
-  star.addEventListener(
-    "mouseenter",
-    function() {
-
-      const rating =
-        Number(this.dataset.rating);
-
-      stars.forEach(s => {
-
-        s.classList.toggle(
-          "hover",
-          Number(s.dataset.rating) <= rating
-        );
-
-      });
-
-    }
-  );
-
-
-  star.addEventListener(
-    "mouseleave",
-    function() {
-
-      stars.forEach(s =>
-        s.classList.remove("hover")
-      );
-
-      stars.forEach(s => {
-
-        s.classList.toggle(
-          "selected",
-          Number(s.dataset.rating) <=
-          selectedRating
-        );
-
-      });
-
-    }
-  );
-
-
-  star.addEventListener(
-    "click",
-    function() {
-
-      selectedRating =
-        Number(this.dataset.rating);
-
-      stars.forEach(s => {
-
-        s.classList.toggle(
-          "selected",
-          Number(s.dataset.rating) <=
-          selectedRating
-        );
-
-      });
-
-    }
-  );
-
-});
-
-
-/* ============================
-   SUBMIT REVIEW
-   ============================ */
-
-const submitButton =
-  document.getElementById(
-    "submit-review"
-  );
-
-
-submitButton.addEventListener(
-  "click",
-  async function() {
-
-
-    const name =
-      document
-        .getElementById("review-name")
-        .value
-        .trim();
-
-
-    const review =
-      document
-        .getElementById("review-text")
-        .value
-        .trim();
-
-
-    const email =
-      document
-        .getElementById("review-email")
-        .value
-        .trim();
-
-
-    const message =
-      document.getElementById(
-        "review-message"
-      );
-
-
-    /* ============================
-       VALIDATION
-       ============================ */
-
-    if (!name) {
-
-      message.textContent =
-        "Please enter your name.";
-
-      return;
-
-    }
-
-
-    if (selectedRating === 0) {
-
-      message.textContent =
-        "Please select a star rating.";
-
-      return;
-
-    }
-
-
-    if (!review) {
-
-      message.textContent =
-        "Please write a review.";
-
-      return;
+      document.body.appendChild(script);
 
     }
 
 
     /* ============================
-       SUBMIT
+       STAR RATING
        ============================ */
 
-    submitButton.disabled = true;
-
-    submitButton.textContent =
-      "Submitting...";
-
-    message.textContent = "";
+    const stars =
+      document.querySelectorAll(
+        "#star-rating span"
+      );
 
 
-    try {
+    let selectedRating = 0;
 
 
-      const response =
-        await fetch(
-          REVIEWS_URL,
-          {
-            method: "POST",
+    stars.forEach(star => {
 
-            body: JSON.stringify({
+      star.addEventListener(
+        "mouseenter",
+        function() {
 
-              name: name,
-
-              rating: selectedRating,
-
-              review: review,
-
-              email: email
-
-            })
-
-          }
-        );
+          const rating =
+            Number(this.dataset.rating);
 
 
-      const result =
-        await response.json();
+          stars.forEach(s => {
+
+            s.classList.toggle(
+              "hover",
+              Number(s.dataset.rating) <=
+              rating
+            );
+
+          });
+
+        }
+      );
 
 
-      if (result.success) {
+      star.addEventListener(
+        "mouseleave",
+        function() {
 
-
-        message.textContent =
-          "Thank you! Your review has been submitted.";
-
-
-        /* Clear form */
-
-        document
-          .getElementById("review-name")
-          .value = "";
-
-
-        document
-          .getElementById("review-text")
-          .value = "";
-
-
-        document
-          .getElementById("review-email")
-          .value = "";
-
-
-        selectedRating = 0;
-
-
-        stars.forEach(s => {
-
-          s.classList.remove(
-            "selected",
-            "hover"
+          stars.forEach(s =>
+            s.classList.remove("hover")
           );
 
-        });
+
+          stars.forEach(s => {
+
+            s.classList.toggle(
+              "selected",
+              Number(s.dataset.rating) <=
+              selectedRating
+            );
+
+          });
+
+        }
+      );
 
 
-        /*
-         * Reload the public reviews
-         * so the new review appears
-         * immediately.
-         */
+      star.addEventListener(
+        "click",
+        function() {
 
-        loadReviews();
-
-
-      } else {
+          selectedRating =
+            Number(this.dataset.rating);
 
 
-        message.textContent =
-          "Something went wrong. Please try again.";
+          stars.forEach(s => {
+
+            s.classList.toggle(
+              "selected",
+              Number(s.dataset.rating) <=
+              selectedRating
+            );
+
+          });
+
+        }
+      );
+
+    });
+
+
+    /* ============================
+       SUBMIT REVIEW
+       ============================ */
+
+    const submitButton =
+      document.getElementById(
+        "submit-review"
+      );
+
+
+    submitButton.addEventListener(
+      "click",
+      async function() {
+
+        const name =
+          document
+            .getElementById("review-name")
+            .value
+            .trim();
+
+
+        const review =
+          document
+            .getElementById("review-text")
+            .value
+            .trim();
+
+
+        const email =
+          document
+            .getElementById("review-email")
+            .value
+            .trim();
+
+
+        const message =
+          document.getElementById(
+            "review-message"
+          );
+
+
+        if (!name) {
+
+          message.textContent =
+            "Please enter your name.";
+
+          return;
+
+        }
+
+
+        if (selectedRating === 0) {
+
+          message.textContent =
+            "Please select a star rating.";
+
+          return;
+
+        }
+
+
+        if (!review) {
+
+          message.textContent =
+            "Please write a review.";
+
+          return;
+
+        }
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          "Submitting...";
+
+        message.textContent = "";
+
+
+        try {
+
+          const response =
+            await fetch(
+              REVIEWS_URL,
+              {
+                method: "POST",
+
+                body: JSON.stringify({
+                  name: name,
+                  rating: selectedRating,
+                  review: review,
+                  email: email
+                })
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          if (result.success) {
+
+            message.textContent =
+              "Thank you! Your review has been submitted.";
+
+
+            document.getElementById(
+              "review-name"
+            ).value = "";
+
+
+            document.getElementById(
+              "review-text"
+            ).value = "";
+
+
+            document.getElementById(
+              "review-email"
+            ).value = "";
+
+
+            selectedRating = 0;
+
+
+            stars.forEach(s => {
+
+              s.classList.remove(
+                "selected",
+                "hover"
+              );
+
+            });
+
+
+            loadReviews();
+
+
+          } else {
+
+            message.textContent =
+              "Something went wrong. Please try again.";
+
+          }
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          message.textContent =
+            "Something went wrong. Please try again.";
+
+        }
+
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          "Submit Review";
 
       }
+    );
 
 
-    } catch (error) {
+    /* ============================
+       INITIAL LOAD
+       ============================ */
 
+    loadReviews();
 
-      console.error(error);
-
-
-      message.textContent =
-        "Something went wrong. Please try again.";
-
-
-    }
-
-
-    submitButton.disabled = false;
-
-    submitButton.textContent =
-      "Submit Review";
-
-
-  }
-);
   </script>
-
 
 </body>
 
