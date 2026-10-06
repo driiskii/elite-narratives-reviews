@@ -15,13 +15,13 @@
 
   <style>
 
- * {
+* {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  padding: 50px 20px;
+  padding: 25px 15px;
   font-family: Arial, sans-serif;
   background: transparent;
   color: #000;
@@ -38,8 +38,8 @@ body {
    ============================ */
 
 #reviews-section > h2 {
-  margin: 0 0 32px;
-  font-size: 38px;
+  margin: 0 0 20px;
+  font-size: 32px;
   line-height: 1.2;
   font-weight: 700;
   color: #000;
@@ -50,26 +50,26 @@ body {
    ============================ */
 
 #rating-summary {
-  margin-bottom: 42px;
+  margin-bottom: 28px;
 }
 
 #average-rating {
-  font-size: 54px;
+  font-size: 42px;
   line-height: 1;
   font-weight: 800;
   color: #000;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 #average-stars {
-  font-size: 30px;
+  font-size: 25px;
   line-height: 1.2;
-  margin-bottom: 7px;
+  margin-bottom: 3px;
 }
 
 .rating-stars {
   color: #8436FD;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
 .rating-number {
@@ -77,8 +77,8 @@ body {
 }
 
 #review-count {
-  margin-top: 8px;
-  font-size: 15px;
+  margin-top: 4px;
+  font-size: 13px;
   color: #000;
   opacity: 0.6;
 }
@@ -90,15 +90,15 @@ body {
 #reviews-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: 14px;
   width: 100%;
   text-align: left;
 }
 
 .review-card {
-  padding: 24px 20px;
+  padding: 20px 18px;
   border: 1px solid rgba(132, 54, 253, 0.14);
-  border-radius: 20px;
+  border-radius: 16px;
   background: #fff;
   box-shadow: 0 7px 24px rgba(0, 0, 0, 0.055);
   transition:
@@ -113,91 +113,75 @@ body {
 
 .review-stars {
   color: #8436FD;
-  font-size: 21px;
-  letter-spacing: 2px;
-  margin-bottom: 13px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 9px;
 }
 
 .review-text {
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.5;
   color: #000;
-  margin: 0 0 18px;
+  margin: 0 0 13px;
 }
 
 .review-name {
   color: #000;
+  font-size: 14px;
   font-weight: 700;
   margin: 0;
 }
 
 .review-date {
   color: #000;
-  font-size: 13px;
+  font-size: 11px;
   opacity: 0.5;
-  margin-top: 5px;
+  margin-top: 4px;
   margin-bottom: 0;
 }
 
 /* ============================
    REVIEW FORM
    ============================ */
-#review-form {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr 1.5fr 1.1fr;
-  gap: 18px;
-  align-items: end;
-}
 
-#review-form-section h2 {
-  text-align: center;
-  margin: 0 0 25px;
-  font-size: 30px;
-  color: #000;
-}
-
-#review-form .form-field {
-  margin-bottom: 0;
-}
-
-#review-form .form-field label {
-  white-space: nowrap;
-}
-
-    #review-form .form-field textarea {
-  min-height: 48px;
-  height: 48px;
-  resize: none;
-}
 #review-form-section {
   width: 100%;
   max-width: 1100px;
-  margin: 60px auto 15px;
-  padding: 32px 40px;
+  margin: 38px auto 10px;
+  padding: 25px 30px;
   text-align: left;
-  border-radius: 24px;
+  border-radius: 18px;
   background: #fff;
   border: 1px solid rgba(132, 54, 253, 0.16);
   box-shadow: 0 9px 30px rgba(0, 0, 0, 0.06);
 }
+
 #review-form-section h2 {
   text-align: center;
-  margin: 0 0 28px;
-  font-size: 30px;
+  margin: 0 0 18px;
+  font-size: 25px;
   color: #000;
 }
 
 /* ============================
-   FORM FIELDS
+   FORM LAYOUT
    ============================ */
 
+#review-form {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1.5fr 1.1fr;
+  gap: 12px;
+  align-items: end;
+}
+
 .form-field {
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .form-field label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  font-size: 13px;
   font-weight: 700;
   color: #000;
 }
@@ -210,11 +194,11 @@ body {
 .form-field input,
 .form-field textarea {
   width: 100%;
-  padding: 13px 15px;
+  padding: 10px 12px;
   border: 1px solid #d8d8d8;
-  border-radius: 11px;
+  border-radius: 9px;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 14px;
   color: #000;
   background: #fff;
   outline: none;
@@ -230,8 +214,9 @@ body {
 }
 
 .form-field textarea {
-  min-height: 135px;
-  resize: vertical;
+  min-height: 40px;
+  height: 40px;
+  resize: none;
 }
 
 /* ============================
@@ -240,11 +225,12 @@ body {
 
 #star-rating {
   display: flex;
-  gap: 6px;
+  gap: 3px;
+  align-items: center;
 }
 
 #star-rating span {
-  font-size: 38px;
+  font-size: 27px;
   line-height: 1;
   color: #d3d3d3;
   cursor: pointer;
@@ -269,13 +255,13 @@ body {
 #submit-review {
   grid-column: 1 / -1;
   justify-self: center;
-  width: 220px;
-  padding: 13px 20px;
+  width: 190px;
+  padding: 10px 16px;
   border: 2px solid #000;
-  border-radius: 11px;
+  border-radius: 9px;
   background: #000;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -283,6 +269,7 @@ body {
     border-color 0.2s ease,
     transform 0.2s ease;
 }
+
 #submit-review:hover {
   background: #8436FD;
   border-color: #8436FD;
@@ -300,7 +287,8 @@ body {
    ============================ */
 
 #review-message {
-  margin-top: 15px;
+  grid-column: 1 / -1;
+  margin-top: 5px;
   text-align: center;
   font-weight: 600;
   color: #000;
@@ -313,66 +301,61 @@ body {
 @media (max-width: 700px) {
 
   body {
-    padding: 35px 15px;
+    padding: 25px 12px;
   }
 
   #reviews-section > h2 {
-    font-size: 30px;
-    margin-bottom: 27px;
+    font-size: 28px;
+    margin-bottom: 18px;
   }
 
   #average-rating {
-    font-size: 46px;
+    font-size: 40px;
   }
 
   #average-stars {
-    font-size: 27px;
+    font-size: 24px;
+  }
+
+  #review-count {
+    font-size: 12px;
   }
 
   #reviews-list {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 14px;
   }
 
   .review-card {
-    padding: 24px;
-    border-radius: 18px;
-  }
-
-  .review-text {
-    font-size: 16px;
+    padding: 20px;
   }
 
   #review-form-section {
-    margin-top: 52px;
-    padding: 30px 20px;
-    border-radius: 20px;
+    margin-top: 35px;
+    padding: 25px 18px;
   }
 
   #review-form-section h2 {
-    font-size: 27px;
-  }
-
-  #star-rating span {
-    font-size: 34px;
+    font-size: 25px;
   }
 
   #review-form {
-  grid-template-columns: 1fr;
-  gap: 18px;
-}
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
 
-#review-form .form-field {
-  margin-bottom: 0;
-}
+  #review-form .form-field textarea {
+    height: 100px;
+    min-height: 100px;
+  }
 
-#review-form .form-field textarea {
-  height: 120px;
-}
+  #star-rating span {
+    font-size: 32px;
+  }
 
-#submit-review {
-  width: 100%;
-}
+  #submit-review {
+    width: 100%;
+  }
 }
   </style>
 
